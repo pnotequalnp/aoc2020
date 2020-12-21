@@ -1,0 +1,8 @@
+cradle:
+  cabal:
+    - path: "./src"
+      component: "lib:aoc2020"
+    - path: "./."
+      component: "exe:aoc2020"
+    - path: "./tests/"
+      component: "test:aoc2020-test"
