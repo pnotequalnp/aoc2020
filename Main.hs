@@ -7,6 +7,7 @@ import qualified Data.Text.IO as T
 import System.Environment (getArgs, getEnv, lookupEnv)
 
 import qualified AoC.Day1 as Day1
+import qualified AoC.Day2 as Day2
 
 type Solution = Text -> IO Text
 
@@ -53,4 +54,6 @@ partNumber = \case
 getSolution :: Integer -> Bool -> Solution
 getSolution 1 False = Day1.part1
 getSolution 1 True = Day1.part2
+getSolution 2 False = Day2.part1
+getSolution 2 True = Day2.part2
 getSolution _ _ = const $ fail "Part not completed"
