@@ -15,7 +15,11 @@ part1 input = maybe failure (pure . T.pack . show . \(x,y) -> x*y) result
   failure = fail "No pair of numbers sums to 2020"
 
 part2 :: Text -> IO Text
-part2 = undefined
+part2 input = maybe failure (pure . T.pack . show . \(x,y,z) -> x*y*z) result
+  where
+  input' = read . T.unpack <$> T.lines input
+  result = threeSum input' 2020
+  failure = fail "No triplet of numbers sums to 2020"
 
 twoSum :: [Int] -> Int -> Maybe (Int, Int)
 twoSum xs t = runST $ do
@@ -24,3 +28,11 @@ twoSum xs t = runST $ do
   where
   find ht x = fmap (x,) <$> H.lookup ht x
   pair x = (t - x, x)
+
+threeSum :: [Int] -> Int -> Maybe (Int, Int, Int)
+threeSum xs t = runST $ do
+  ht <- H.fromList @HashTable $ pair <$> xs <*> xs
+  asum <$> traverse (find ht) xs
+  where
+  find ht x = fmap (\(y,z) -> (x,y,z)) <$> H.lookup ht x
+  pair y z = (t - (y + z), (y,z))

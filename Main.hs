@@ -38,12 +38,6 @@ runSolution opts day solution = do
   case res of
     Left _      -> fail "Couldn't fetch input"
     Right input -> solution input >>= T.putStrLn
-  pure ()
-
-getSolution :: Integer -> Bool -> Solution
-getSolution 1 False = Day1.part1
-getSolution 1 True = Day1.part2
-getSolution _ _ = const $ fail "Part not completed"
 
 pattern PartNumber :: Bool -> Int
 pattern PartNumber x <- (partNumber -> Just x)
@@ -55,3 +49,8 @@ partNumber = \case
   1 -> Just False
   2 -> Just True
   _ -> Nothing
+
+getSolution :: Integer -> Bool -> Solution
+getSolution 1 False = Day1.part1
+getSolution 1 True = Day1.part2
+getSolution _ _ = const $ fail "Part not completed"
