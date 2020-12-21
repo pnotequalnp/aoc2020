@@ -13,6 +13,7 @@ common common
   build-depends:       base ^>=4.13.0.0
                      , advent-of-code-api
                      , text
+                     , vector
   default-extensions:  BangPatterns
                      , BlockArguments
                      , EmptyCase
@@ -33,6 +34,7 @@ library
   hs-source-dirs:      src
   exposed-modules:     AoC.Day1
                      , AoC.Day2
+                     , AoC.Day3
   build-depends:       base ^>=4.13.0.0
                      , hashtables
 
