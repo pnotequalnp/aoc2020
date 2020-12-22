@@ -16,7 +16,7 @@ part2 input = pure . T.pack . show $ expected - actual
   n = length ids + 1
   low = minimum ids
   high = maximum ids
-  expected = double2Int $ (fromIntegral n / 2) * (fromIntegral low + fromIntegral high)
+  expected = double2Int $ (fromIntegral n / 2) * fromIntegral (low + high)
   actual = sum ids
 
 seatId :: Seat -> Int
