@@ -13,6 +13,7 @@ common common
   build-depends:       base ^>=4.13.0.0
                      , advent-of-code-api
                      , containers
+                     , hashtables
                      , split
                      , text
                      , vector
@@ -41,7 +42,6 @@ library
                      , AoC.Day5
                      , AoC.Day6
   build-depends:       base ^>=4.13.0.0
-                     , hashtables
 
 executable aoc2020
   import:              common
