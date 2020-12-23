@@ -6,7 +6,7 @@ import qualified Data.Text as T
 
 part1 :: Text -> IO Text
 part1 = pure . T.pack . show . sum . fmap count . T.splitOn "\n\n"
-  where count = S.size . S.fromList . T.chunksOf 1 . T.filter (not . (== '\n'))
+  where count = S.size . S.fromList . T.chunksOf 1 . T.filter (/= '\n')
 
 part2 :: Text -> IO Text
 part2 = pure . T.pack . show . sum . fmap count . T.splitOn "\n\n"
