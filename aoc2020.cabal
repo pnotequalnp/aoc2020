@@ -39,6 +39,7 @@ library
                      , AoC.Day3
                      , AoC.Day4
                      , AoC.Day5
+                     , AoC.Day6
   build-depends:       base ^>=4.13.0.0
                      , hashtables
 

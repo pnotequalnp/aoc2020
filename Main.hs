@@ -11,6 +11,7 @@ import qualified AoC.Day2 as Day2
 import qualified AoC.Day3 as Day3
 import qualified AoC.Day4 as Day4
 import qualified AoC.Day5 as Day5
+import qualified AoC.Day6 as Day6
 
 type Solution = Text -> IO Text
 
@@ -65,4 +66,6 @@ getSolution 4 False = Day4.part1
 getSolution 4 True  = Day4.part2
 getSolution 5 False = Day5.part1
 getSolution 5 True  = Day5.part2
+getSolution 6 False = Day6.part1
+getSolution 6 True  = Day6.part2
 getSolution _ _     = const $ fail "Part not completed"
