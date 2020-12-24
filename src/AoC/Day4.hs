@@ -12,11 +12,11 @@ import Text.Read (readMaybe)
 
 type Passport = Map Text Text
 
-part1 :: Text -> IO Text
-part1 input = pure . T.pack . show . length . filter validFields . parse $ input
+part1 :: Text -> Text
+part1 input = T.pack . show . length . filter validFields . parse $ input
 
-part2 :: Text -> IO Text
-part2 input = pure . T.pack . show . length . filter valid . parse $ input
+part2 :: Text -> Text
+part2 input = T.pack . show . length . filter valid . parse $ input
 
 parse :: Text -> [Passport]
 parse t =

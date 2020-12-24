@@ -6,11 +6,11 @@ import GHC.Float (double2Int)
 
 type Seat = (Int, Int)
 
-part1 :: Text -> IO Text
-part1 = pure . T.pack . show . maximum . fmap (seatId . decode) . T.lines
+part1 :: Text -> Text
+part1 = T.pack . show . maximum . fmap (seatId . decode) . T.lines
 
-part2 :: Text -> IO Text
-part2 input = pure . T.pack . show $ expected - actual
+part2 :: Text -> Text
+part2 input = T.pack . show $ expected - actual
   where
   ids = seatId . decode <$> T.lines input
   n = length ids + 1

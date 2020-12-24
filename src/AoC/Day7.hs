@@ -11,11 +11,11 @@ import qualified Data.Text as T
 
 type Bag = Text
 
-part1 :: Text -> IO Text
-part1 = pure . T.pack . show . M.size . M.filter ("shiny gold" `S.member`) . flatten . parse
+part1 :: Text -> Text
+part1 = T.pack . show . M.size . M.filter ("shiny gold" `S.member`) . flatten . parse
 
-part2 :: Text -> IO Text
-part2 = pure . T.pack . show . (! "shiny gold") . count . parse
+part2 :: Text -> Text
+part2 = T.pack . show . (! "shiny gold") . count . parse
 
 parse :: Text -> Map Bag (Map Bag Int)
 parse = M.fromList . fmap (go . T.splitOn " bags contain ") . T.lines

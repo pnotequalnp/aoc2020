@@ -14,7 +14,7 @@ import qualified AoC.Day5 as Day5
 import qualified AoC.Day6 as Day6
 import qualified AoC.Day7 as Day7
 
-type Solution = Text -> IO Text
+type Solution = Text -> Text
 
 main :: IO ()
 main = do
@@ -43,7 +43,7 @@ runSolution opts day solution = do
   res <- runAoC opts $ AoCInput day
   case res of
     Left _      -> fail "Couldn't fetch input"
-    Right input -> solution input >>= T.putStrLn
+    Right input -> T.putStrLn $ solution input
 
 pattern PartNumber :: Bool -> Int
 pattern PartNumber x <- (partNumber -> Just x)
@@ -71,4 +71,4 @@ getSolution 6 False = Day6.part1
 getSolution 6 True  = Day6.part2
 getSolution 7 False = Day7.part1
 getSolution 7 True  = Day7.part2
-getSolution _ _     = const $ fail "Part not completed"
+getSolution _ _     = error "Part not completed"

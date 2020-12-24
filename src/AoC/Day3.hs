@@ -4,11 +4,11 @@ import Data.Text (Text)
 import qualified Data.Text as T
 import Data.Vector ((!), (!?), fromList)
 
-part1 :: Text -> IO Text
-part1 = pure . T.pack . show . go 3 1
+part1 :: Text -> Text
+part1 = T.pack . show . go 3 1
 
-part2 :: Text -> IO Text
-part2 input = pure . T.pack . show . product . fmap ($ input) $ uncurry go <$> slopes
+part2 :: Text -> Text
+part2 input = T.pack . show . product . fmap ($ input) $ uncurry go <$> slopes
   where
   slopes = [(1,1), (3,1), (5,1), (7,1), (1,2)]
 
