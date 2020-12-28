@@ -48,7 +48,7 @@ swapInstruction is n = case is ! n of
   _     -> is
 
 runProgram :: Program -> Exit
-runProgram p = flip evalState (S 0 0 S.empty) . run . step $ p
+runProgram = flip evalState (S 0 0 S.empty) . run . step
 
 run :: Monad m => ExceptT e m a -> m e
 run x = go
