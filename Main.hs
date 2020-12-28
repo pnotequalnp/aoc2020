@@ -13,6 +13,7 @@ import qualified AoC.Day4 as Day4
 import qualified AoC.Day5 as Day5
 import qualified AoC.Day6 as Day6
 import qualified AoC.Day7 as Day7
+import qualified AoC.Day8 as Day8
 
 type Solution = Text -> Text
 
@@ -71,4 +72,6 @@ getSolution 6 False = Day6.part1
 getSolution 6 True  = Day6.part2
 getSolution 7 False = Day7.part1
 getSolution 7 True  = Day7.part2
+getSolution 8 False = Day8.part1
+getSolution 8 True  = Day8.part2
 getSolution _ _     = error "Part not completed"
