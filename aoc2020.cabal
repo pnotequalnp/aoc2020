@@ -45,7 +45,7 @@ library
                      , AoC.Day6
                      , AoC.Day7
                      , AoC.Day8
-  build-depends:       base ^>=4.13.0.0
+                     , AoC.Day9
 
 executable aoc2020
   import:              common
