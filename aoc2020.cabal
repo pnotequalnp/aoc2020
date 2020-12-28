@@ -51,6 +51,8 @@ executable aoc2020
   import:              common
   main-is:             Main.hs
   build-depends:       aoc2020
+                     , clock
+                     , formatting
 
 test-suite aoc2020-test
   import:              common

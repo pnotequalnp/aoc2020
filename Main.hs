@@ -2,8 +2,12 @@ module Main (main) where
 
 import Advent as A
 import Data.Bool (bool)
+import Data.List (intercalate)
 import Data.Text (Text)
 import qualified Data.Text.IO as T
+import Formatting ((%), fprint)
+import Formatting.Clock (timeSpecs)
+import System.Clock (Clock(..), getTime)
 import System.Environment (getArgs, getEnv, lookupEnv)
 
 import qualified AoC.Day1 as Day1
@@ -23,7 +27,7 @@ main = do
   key      <- getEnv "AOC_SESSION_KEY"
   year     <- read <$> getEnv "AOC_YEAR"
   cacheDir <- lookupEnv "AOC_CACHE"
-  putStrLn $ unlines
+  putStrLn $ intercalate "\n"
     [ "Year: " <> show year
     , "Day: " <> show day
     , "Part: " <> show (PartNumber part)
@@ -44,7 +48,13 @@ runSolution opts day solution = do
   res <- runAoC opts $ AoCInput day
   case res of
     Left _      -> fail "Couldn't fetch input"
-    Right input -> T.putStrLn $ solution input
+    Right input -> do
+      putStrLn "------------"
+      start <- getTime Monotonic
+      T.putStrLn $ solution input
+      end <- getTime Monotonic
+      putStrLn "------------"
+      fprint (timeSpecs % "\n") start end
 
 pattern PartNumber :: Bool -> Int
 pattern PartNumber x <- (partNumber -> Just x)
