@@ -6,6 +6,7 @@ module AoC.Day8 where
 import Control.Lens
 import Control.Monad.Except
 import Control.Monad.State
+import Data.Maybe (mapMaybe)
 import Data.Set (Set)
 import qualified Data.Set as S
 import Data.Text (Text)
@@ -26,8 +27,8 @@ part1 = T.pack . show . go . runProgram . parseInstructions
   where go = \case Loop x -> x; _ -> error "Invalid input"
 
 part2 :: Text -> Text
-part2 = T.pack . show . filter p . fmap runProgram . corrected . parseInstructions
-  where p = \case Success _ -> True; _ -> False
+part2 = T.pack . show . head . mapMaybe go . fmap runProgram . corrected . parseInstructions
+  where go = \case Success x -> Just x; _ -> Nothing
 
 corrected :: Program -> [Program]
 corrected p = V.toList . V.map (swapInstruction p) $
@@ -42,8 +43,8 @@ parseInstructions = V.fromList . fmap (go . T.splitOn " ") . T.lines
 
 swapInstruction :: Program -> Int -> Program
 swapInstruction is n = case is ! n of
-  Acc x -> is // [(n, Jmp x)]
-  Jmp x -> is // [(n, Acc x)]
+  Nop x -> is // [(n, Jmp x)]
+  Jmp x -> is // [(n, Nop x)]
   _     -> is
 
 runProgram :: Program -> Exit
@@ -52,8 +53,8 @@ runProgram p = flip evalState (S 0 0 S.empty) . run . step $ p
 run :: Monad m => ExceptT e m a -> m e
 run x = go
   where go = runExceptT x >>= \case
+          Left e  -> pure e
           Right _ -> go
-          Left e -> pure e
 
 step :: Program -> Machine ()
 step p = do
