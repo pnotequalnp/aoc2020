@@ -15,7 +15,7 @@ function with [direnv](https://direnv.net/) to manage environment variables like
 ### Nix (Recommended)
 
 ```bash
-nix run github:pnotequalnp -- 5 2 # day 5, part 2
+nix run github:pnotequalnp/aoc2020 -- 5 2 # day 5, part 2
 ```
 
 ### Cabal
